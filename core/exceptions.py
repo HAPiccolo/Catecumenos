@@ -1,0 +1,2 @@
+class AlumnoExistException(Exception):
+    pass

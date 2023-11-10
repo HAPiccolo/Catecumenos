@@ -1,0 +1,32 @@
+<!-- inserta el contenido de base.html en esta pagina -->
+{% extends 'core/base.html' %}
+
+{% block title %} Inicio {% endblock %}
+
+{% block content %}
+
+<!--Carga de los Archivos estaticos-->
+{% load static %} 
+
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+
+<section>
+  <div class="container-fluid">
+    <img src="https://oratorionpaz.org/wp-content/uploads/2021/02/bannercomunion.png" style="width: 100%; height: 20rem;" alt="img-banner">
+  </div>
+  </section>
+  <section style="background-color: rgba(3, 3, 3, 0.527);">
+    <div class="container text-center">
+      <h2 class="text-dark-emphasis">SISTEMA DE REGISTRO DE CATECUMENOS</h2>
+    </div>
+  </section>
+
+  
+
+ 
+
+
+
+
+{% endblock %}
