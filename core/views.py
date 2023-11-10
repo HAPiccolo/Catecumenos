@@ -6,7 +6,20 @@ from .exceptions import AlumnoExistException
 
 
 def home(request):
-    return render(request, 'core/home.html')
+
+    tdocentes = Docente.objects.count()
+    talumnos = Alumno.objects.count()
+
+    datos = {
+        'talumnos':talumnos,
+        'tdocentes':tdocentes,
+    }
+
+    return render(request, 'core/home.html', datos)
+
+
+
+    
 
 
 def consultas(request):
@@ -26,7 +39,7 @@ def consultas(request):
                 docente = alumno.docente_alumno  # Supongamos que el curso tiene un campo ForeignKey al docente
                 return render(request, 'core/consultas.html', {'alumno': alumno, 'tutor': tutor, 'docente': docente})
             except Alumno.DoesNotExist:
-                error_message = "No se encontró ningún alumno con el DNI proporcionado."
+                return render(request, 'core/consultas.html', {'alumno_no_encontrado':True})
 
     return render(request, 'core/consultas.html')
 

@@ -4,16 +4,18 @@
 {% block title %} Consultas {% endblock %}
 
 {% block content %}
-
-<div class="container">
+<body class="color-dark">
+<div class="container-fluid bg-secondary border border-dark text-light p-3 text-center">
   <br>
-  <h6>BUSQUEDA POR DNI</h6>
+  <h4><strong>BUSQUEDA DE ALUMNO POR DNI</strong></h4>
 </div>
-<div class="container input-group">
-  <form class="d-flex" method="post" action="{% url 'consultas' %}">
+
+<div class="container mx-auto p-4" style="max-width: 300px;">
+  <form class="d-flex" method="post" id="busqueda" action="{% url 'consultas' %}">
     {% csrf_token %}
+    <span class="input-group-text">D.N.I</span>
     <input class="form-control me-2" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 8);" type="search" id="dni_alumno" name="dni_alumno"
-      placeholder="Ingrese el DNI del catecumeno" aria-label="Search">
+      placeholder="Ej: 12345678" aria-label="Search">
     <button class="btn btn-outline-success" type="submit"><svg xmlns="http://www.w3.org/2000/svg" height="1em"
         viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
         <path
@@ -21,23 +23,26 @@
       </svg></button>
   </form>
 </div>
+
 <br><br>
-<div class="container">
+<div class="container mx-auto" style="max-width: 600px;">
   {% if alumno %}
   <ul class="list-group mb-4">
-      <li class="list-group-item">Apellido del Alumno: {{ alumno.apellido_alumno }}</li>
-      <li class="list-group-item">Nombre del Alumno: {{ alumno.nombre_alumno }}</li>
-      <li class="list-group-item">Tutor del Alumno: {{ tutor.nombre_tutor }}</li>
-      <li class="list-group-item">Telefono del tutor: {{ tutor.telefono_tutor }}</li>
-      <li class="list-group-item">Inscripto al Curso: {{ alumno.curso_alumno }}</li>
-      <li class="list-group-item">Docente Asignado: {{ alumno.docente_alumno }}</li>
-  </ul>
-  {% endif %}
-  {% if not alumno %}
-  <div class="alert alert-danger" role="alert">
-Alumno no encontrado.
-  </div>
-  {% endif %}
+      <li class="list-group-item"><strong>Apellido del Alumno:</strong>  {{ alumno.apellido_alumno }}</li>
+      <li class="list-group-item"><strong>Nombre del Alumno:</strong>  {{ alumno.nombre_alumno }}</li>
+      <li class="list-group-item"><strong>Tutor del Alumno:</strong>  {{ tutor.nombre_tutor }}</li>
+      <li class="list-group-item"><strong>Telefono del tutor:</strong>  {{ tutor.telefono_tutor }}</li>
+      <li class="list-group-item"><strong>Inscripto al Curso:</strong>  {{ alumno.curso_alumno }}</li>
+      <li class="list-group-item"><strong>Docente Asignado:</strong>  {{ alumno.docente_alumno }}</li>
 </div>
+{% endif %}
+{% if alumno_no_encontrado %}
+<div class="alert alert-danger" role="alert">
+  Alumno no encontrado.
+</div>
+{% endif%}
+
 
 {% endblock %}
+
+</body>
