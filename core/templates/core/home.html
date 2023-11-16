@@ -6,45 +6,44 @@
 {% block content %}
 
 <!--Carga de los Archivos estaticos-->
-{% load static %} 
+{% load static %}
 
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 
 
 <section>
   <div class="container-fluid">
-    <img src="https://oratorionpaz.org/wp-content/uploads/2021/02/bannercomunion.png" style="width: 100%; height: 20rem;" alt="img-banner">
+    <img src="https://oratorionpaz.org/wp-content/uploads/2021/02/bannercomunion.png"
+      style="width: 100%; height: 20rem;" alt="img-banner">
   </div>
-  </section>
-  <section style="background-color: rgba(3, 3, 3, 0.527); ">
-    <div class="container text-center">
-      <h2 class="text-dark">SISTEMA DE REGISTRO DE CATECUMENOS</h2>
-    </div>
-  </section>
+</section>
+<section style="background-color: rgba(3, 3, 3, 0.527); ">
+  <div class="container text-center">
+    <h2 class="text-dark">SISTEMA DE REGISTRO DE CATECUMENOS</h2>
+  </div>
+</section>
 
-  <section>
-    
-    <div class="container overflow-hidden text-center bg-primary rounded">
-      <div class="row gx-5 ">
-          <div class="col border border-dark text-light ">
-              <h4>Cantidad el Alumnos</h4>
-              <p><strong><h3>{{ talumnos }}</h3></strong></p>
-              
-          </div>
-  
-          <div class="col border border-dark text-light">
-              <h3>Cantidad de Docentes</h3>
-              <p><strong><h3>{{ tdocentes }}</h3></strong></p>
-              
-          </div>
+<section>
+
+  <div class="container overflow-hidden text-center bg-secondary rounded">
+    <div class="row gx-4 border border-dark rounded text-light">
+      <div class="col-md">
+        <h4>Cantidad de Alumnos</h4>
+        <h3>{{ talumnos }}</h3>
       </div>
+      <div class="col-md">
+        <h4>Cantidad de Docentes</h4>
+        <h3>{{ tdocentes }}</h3>
+      </div>
+    </div>
   </div>
-    
-  </section>
 
- 
+  <div class="container overflow-hidden text-center bg-secondary rounded text-light">
+    <h5>ÚLTIMO ALUMNO REGISTRADO</h5>
+    <h3>{{ ultimoAlumno.apellido_alumno }} {{ ultimoAlumno.nombre_alumno}}</h3>
+  </div>
 
 
-
+</section>
 
 {% endblock %}

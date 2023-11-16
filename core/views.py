@@ -9,37 +9,55 @@ def home(request):
 
     tdocentes = Docente.objects.count()
     talumnos = Alumno.objects.count()
-
+    ultimoAlumno = Alumno.objects.last()
     datos = {
-        'talumnos':talumnos,
-        'tdocentes':tdocentes,
+        'talumnos': talumnos,
+        'tdocentes': tdocentes,
+        'ultimoAlumno':ultimoAlumno,
     }
+
+
 
     return render(request, 'core/home.html', datos)
 
 
-
-    
-
-
 def consultas(request):
+    tutores =[]
     alumno = None
     tutor = None
     docente = None
 
+    
     if request.method == "POST":
-        dni_alumno = request.POST.get("dni_alumno", None)  # Obtiene el DNI ingresado por el usuario
+        apellido_busqueda = request.POST.get("apellidoAlumno", None)
+        dni_alumno = request.POST.get("dni_alumno", None)
+        if apellido_busqueda:
+            apellidoAlumno = Alumno.objects.filter(apellido_alumno__icontains=apellido_busqueda).order_by('apellido_alumno')
 
-        if dni_alumno:
-            try:
-                # Realiza la consulta para obtener el alumno y su tutor
-                alumno = Alumno.objects.get(dni_alumno=dni_alumno)
-                tutor = alumno.tutor  # Supongamos que tienes una relación ForeignKey en tu modelo Alumno
-                # También puedes obtener el docente asociado al alumno según tu modelo de datos
-                docente = alumno.docente_alumno  # Supongamos que el curso tiene un campo ForeignKey al docente
-                return render(request, 'core/consultas.html', {'alumno': alumno, 'tutor': tutor, 'docente': docente})
-            except Alumno.DoesNotExist:
-                return render(request, 'core/consultas.html', {'alumno_no_encontrado':True})
+            if apellidoAlumno:
+                # obtiene tutores de los alumnos encontrados
+                tutores = Tutor.objects.filter(alumno__in=apellidoAlumno)
+
+                # obtiene docente de los alumnos encontrados
+                docente = Docente.objects.filter(alumno__in=apellidoAlumno)
+
+                return render(request, 'core/consultas.html', {'apellidoAlumno':apellidoAlumno, 'tutores':tutores, 'docente':docente})
+            else:
+                return render(request, 'core/consultas.html', {'alumno_no_encontrado': True})
+    
+         # Obtiene el DNI ingresado por el usuario
+        elif dni_alumno:
+                try:
+                    # Realiza la consulta para obtener el alumno y su tutor
+                    alumno = Alumno.objects.get(dni_alumno=dni_alumno)
+                    tutor = alumno.tutor  # Supongamos que tienes una relación ForeignKey en tu modelo Alumno
+                    # También puedes obtener el docente asociado al alumno según tu modelo de datos
+                    # Supongamos que el curso tiene un campo ForeignKey al docente
+                    docente = alumno.docente_alumno
+                    return render(request, 'core/consultas.html', {'alumno': alumno, 'tutor': tutor, 'docente': docente})
+                except Alumno.DoesNotExist:
+                    return render(request, 'core/consultas.html', {'alumno_no_encontrado': True})
+        
 
     return render(request, 'core/consultas.html')
 
