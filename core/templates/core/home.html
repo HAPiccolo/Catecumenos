@@ -12,21 +12,42 @@
 
 
 <section>
-  <div class="container-fluid">
-    <img src="https://oratorionpaz.org/wp-content/uploads/2021/02/bannercomunion.png"
-      style="width: 100%; height: 20rem;" alt="img-banner">
+  <div class="container-fluid ">
+   <img src="{% static 'img/banner.png' %}" style="width: 100%; height: 15rem;" alt="img-banner">
+    <!-- <img src="https://oratorionpaz.org/wp-content/uploads/2021/02/bannercomunion.png"
+      style="width: 100%; height: 15rem;" alt="img-banner"> -->
   </div>
 </section>
-<section style="background-color: rgba(3, 3, 3, 0.527); ">
-  <div class="container text-center">
-    <h2 class="text-dark">SISTEMA DE REGISTRO DE CATECUMENOS</h2>
+<section style="background-color: #212529; ">
+  <div class="container text-center ">
+    <h2 class="text-light">SISTEMA DE REGISTRO DE CATECUMENOS</h2>
   </div>
 </section>
 
 <section>
+  <hr>
 
-  <div class="container overflow-hidden text-center bg-secondary rounded">
-    <div class="row gx-4 border border-dark rounded text-light">
+
+  <div class="container-fluid text-center " style="width: 50%;">
+    <div class="row gx-4 text-light rounded  ">
+      <!-- Primer cuadro -->
+      <div class="col-md-6">
+        <div class="bg-dark p-3 rounded rounded text-light border-light border border-2 shadow-lg bg-dark">
+          <h4>Cantidad de Alumnos</h4>
+          <h3>{{ talumnos }}</h3>
+        </div>
+      </div>
+
+      <!-- Segundo cuadro -->
+      <div class="col-md-6">
+        <div class="bg-dark p-3 rounded rounded text-light border-light border border-2 shadow-lg bg-dark">
+          <h4>Cantidad de Docentes</h4>
+          <h3>{{ tdocentes }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row gx-4 text-light">
       <div class="col-md">
         <h4>Cantidad de Alumnos</h4>
         <h3>{{ talumnos }}</h3>
@@ -36,9 +57,9 @@
         <h3>{{ tdocentes }}</h3>
       </div>
     </div>
-  </div>
-
-  <div class="container overflow-hidden text-center bg-secondary rounded text-light">
+  </div> --->
+  <br>
+  <div class="container overflow-hidden text-center rounded text-light border-light border border-2 shadow-lg bg-dark" style="width: 48%;">
     <h5>ÚLTIMO ALUMNO REGISTRADO</h5>
     <h3>{{ ultimoAlumno.apellido_alumno }} {{ ultimoAlumno.nombre_alumno}}</h3>
   </div>

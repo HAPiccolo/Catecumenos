@@ -5,104 +5,126 @@
 
 {% block content %}
 {% load static %}
-<div class="container-fluid bg-secondary border border-dark text-light p-3 text-center">
+<div class="container-fluid bg-dark border border-dark text-light text-center p-3">
     <br>
     <h4><strong>REGISTRO DE ALUMNO</strong></h4>
     <p></p>
-  </div>
-<form method="POST">
-    {% csrf_token %}
-    <div class="container-sm b p-2">
-     
-        <div class=" border border-dark rounded border-2 p-2 m-2">
-            
-            <h4>Datos alumno</h4>
+
+</div>
+<div class="container text-light rounded">
+
+    <form method="POST">
+        {% csrf_token %}
+
+
+        <div class=" bg-dark border border-light rounded border-2 p-2 m-2 ">
+
+            <h4>DATOS DEL ALUMNO/A</h4><br>
             <div class="input-group mb-3 ">
-                <span class="input-group-text border border-dark" id="inputGroup-sizing-default">Apellido</span>
-                <input type="text" name="apellido_alumno" id="apellido_alumno" class="form-control border border-dark " required>
+                <span class="input-group-text border border-dark bg-secondary"
+                    id="inputGroup-sizing-default">Apellido</span>
+                <input type="text" name="apellido_alumno" id="apellido_alumno" class="form-control border border-dark "
+                    required>
             </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text border border-dark" id="inputGroup-sizing-default">Nombre</span>
-                <input type="text" name="nombre_alumno" id="nombre_alumno" class="form-control border border-dark " 
+            <div class="input-group mb-3 ">
+                <span class="input-group-text border border-dark bg-secondary"
+                    id="inputGroup-sizing-default">Nombre</span>
+                <input type="text" name="nombre_alumno" id="nombre_alumno" class="form-control border border-dark "
                     required>
             </div>
             <div class="input-group mb-3">
-                <span class="input-group-text border border-dark" id="inputGroup-sizing-default">DNI</span>
-                <input type="text" name="dni_alumno" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 8);" class="form-control border border-dark " 
-                    required>
+                <span class="input-group-text border border-dark bg-secondary" id="inputGroup-sizing-default">DNI</span>
+                <input type="text" name="dni_alumno"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 8);"
+                    class="form-control border border-dark " required>
             </div>
-           
+
             <div class="input-group mb-3">
-                <label class="input-group-text border border-dark">Curso al que se inscribe</label>
+                <label class="input-group-text border border-dark bg-secondary">Curso al que se inscribe</label>
                 <select id="curso" name="curso" class="border border-dark  p-2">
                     {% for curso in cursos %}
-                        <option value="{{ curso.id }}">{{ curso.nombre_curso }}</option>
+                    <option value="{{ curso.id }}">{{ curso.nombre_curso }}</option>
                     {% endfor %}
                 </select>
             </div>
-              </div>
-     
+        </div>
+
+        
 
 
-        <div class="border border-dark rounded border-2 p-2 m-2">
-            <h4>Datos del tutor</h4>
+        <div class="bg-dark border border-light rounded border-2 p-2 m-2">
+            <h4>DATOS DEL TUTOR/A</h4><br>
             <div class="input-group mb-3">
-                <span class="input-group-text border border-dark" id="inputGroup-sizing-default">Apellido</span>
-                <input type="text" name="apellido_tutor" class="form-control border border-dark " 
-                    required>
+                <span class="input-group-text border border-dark bg-secondary"
+                    id="inputGroup-sizing-default">Apellido</span>
+                <input type="text" name="apellido_tutor" class="form-control border border-dark " required>
             </div>
             <div class="input-group mb-3">
-                <span class="input-group-text border border-dark" id="inputGroup-sizing-default">Nombre</span>
-                <input type="text" name="nombre_tutor" class="form-control border border-dark " 
-                    required>
+                <span class="input-group-text border border-dark bg-secondary"
+                    id="inputGroup-sizing-default">Nombre</span>
+                <input type="text" name="nombre_tutor" class="form-control border border-dark " required>
             </div>
             <div class="input-group mb-3">
-                <span class="input-group-text border border-dark" id="inputGroup-sizing-default">DNI</span>
-                <input type="text" name="dni_tutor" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 8);" class="form-control border border-dark " 
-                    required>
+                <span class="input-group-text border border-dark bg-secondary" id="inputGroup-sizing-default">DNI</span>
+                <input type="text" name="dni_tutor"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 8);"
+                    class="form-control border border-dark " required>
             </div>
             <div class="input-group mb-3">
-                <span class="input-group-text border border-dark" id="inputGroup-sizing-default">Telefono</span>
-                <input type="text" name="telefono_tutor" oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 10);" class="form-control border border-dark " 
-                    required>
+                <span class="input-group-text border border-dark bg-secondary"
+                    id="inputGroup-sizing-default">Telefono</span>
+                <input type="text" name="telefono_tutor"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 10);"
+                    class="form-control border border-dark " required>
             </div>
             <div class="input-group mb-3">
-                <span class="input-group-text border border-dark" id="inputGroup-sizing-default">Barrio</span>
+                <span class="input-group-text border border-dark bg-secondary"
+                    id="inputGroup-sizing-default">Barrio</span>
                 <input type="text" name="barrio" class="form-control border border-dark ">
-            
-                <span class="input-group-text border border-dark" id="inputGroup-sizing-default">Vivienda</span>
+
+                <span class="input-group-text border border-dark bg-secondary"
+                    id="inputGroup-sizing-default">Vivienda</span>
                 <input type="text" name="vivienda" class="form-control border border-dark ">
-           
-                <span class="input-group-text border border-dark" id="inputGroup-sizing-default">Calle</span>
+
+                <span class="input-group-text border border-dark bg-secondary"
+                    id="inputGroup-sizing-default">Calle</span>
                 <input type="text" name="calle" class="form-control border border-dark ">
+
+                <span class="input-group-text border border-dark bg-secondary"
+                id="inputGroup-sizing-default">Numero</span>
+            <input type="text" name="numero" class="form-control border border-dark ">
             </div>
             <div class="input-group mb-3">
-                <span class="input-group-text border border-dark" id="inputGroup-sizing-default">Casa</span>
+                <span class="input-group-text border border-dark bg-secondary"
+                    id="inputGroup-sizing-default">Casa</span>
                 <input type="text" name="casa" class="form-control border border-dark ">
-           
-                <span class="input-group-text border border-dark" id="inputGroup-sizing-default">Piso</span>
+
+                <span class="input-group-text border border-dark bg-secondary"
+                    id="inputGroup-sizing-default">Piso</span>
                 <input type="text" name="piso" class="form-control border border-dark ">
-            
-                <span class="input-group-text border border-dark" id="inputGroup-sizing-default">Depto. Nº</span>
+
+                <span class="input-group-text border border-dark bg-secondary" id="inputGroup-sizing-default">Depto.
+                    Nº</span>
                 <input type="text" name="depto" class="form-control border border-dark ">
-           
-                <span class="input-group-text border border-dark" id="inputGroup-sizing-default">Sector</span>
+
+                <span class="input-group-text border border-dark bg-secondary"
+                    id="inputGroup-sizing-default">Sector</span>
                 <input type="text" name="sector" class="form-control border border-dark ">
             </div>
         </div>
-        </div>
-        <div class="container">
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end p-2">
-                <a class="btn btn-danger me-md-2 border border-dark w-100 m-2 p-3" type="button"  href= {% url 'home' %}>Cancelar</a>
-                <button class="btn btn-success w-100 border border-dark m-2" type="submit" value="Guardar">Guardar</button>
-              </div>
-        </div>
+        <div class="container bg-dark border border-light rounded border-2 p-1 ">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end p-2">
+        <a class="btn btn-danger me-md-1 border border-dark w-100  p-3" type="button" href={% url 'home' %}>Cancelar</a>
+        <button class="btn btn-success w-100 border border-dark  p-3" type="submit" value="Guardar">Guardar</button>
     </div>
-    </div>
+</div>
+</div>
+
+</div>
+</div>
 </form>
 
 
 
 
 {% endblock %}
-

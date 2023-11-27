@@ -14,12 +14,13 @@ integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2
 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 crossorigin="anonymous"></script>
 
+<link rel="manifest" href="{% static 'manifiest.json' %}"> <!-- Permite instalar la app en el movil -->
 
 
   <title>SCSP - {% block title %} {% endblock %}</title>
 </head>
 
-<body>
+<body style="background-color: rgb(39, 68, 89);">
   <!-- CABECERA-->
   <nav class="navbar navbar-expand-lg  bg-dark border-bottom border-body" data-bs-theme="dark">
     <div class="container-fluid">
@@ -39,9 +40,18 @@ crossorigin="anonymous"></script>
           <li class="nav-item">
             <a class="nav-link" href={% url 'registrar' %}>Registrar</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href={% url 'administrador' %}>Adminisitrador</a>
+          </li>
 
         </ul>
-
+        {% if user.is_authenticated %}
+        <!-- Si el usuario está autenticado, mostrar el botón de cerrar sesión -->
+        <form method="post" action="{% url 'logout' %}" class="d-flex">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-link text-white">Cerrar Sesión</button>
+        </form>
+        {% endif %}
       </div>
     </div>
   </nav>

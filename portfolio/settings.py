@@ -133,3 +133,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
+# VARIABLES DE REDIRECCION LOGIN Y LOGOUT
+LOGIN_REDIRECT_URL = 'admninistrador'
+LOGOUT_REDIRECT_URL = 'home'

@@ -1,0 +1,34 @@
+<!-- inserta el contenido de base.html en esta pagina -->
+{% extends 'core/base.html' %}
+
+{% block title %} Administracion {% endblock %}
+
+{% block content %}
+{% load static %}
+<section class="vh-100" ">
+
+<div class=" container py-3">
+    <div class="container-sm bg-dark p-5 text-light text-center border border-ligh border-2" style="width: 30%; border-radius: 1rem;">
+        <h4><strong>INICIAR SESION</strong></h4>
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="container-sm text-light py-3">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Usuario</label>
+                    <input type="text" name="username" class="form-control" id="username"
+                        placeholder="Nombre de usuario" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña"
+                        required>
+                </div>
+                <button class="btn btn-success w-100 " type="submit">Iniciar Sesión</button>
+            </div>
+        </form>
+    </div>
+    </div>
+</section>
+
+{% endblock %}

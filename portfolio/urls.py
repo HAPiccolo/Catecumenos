@@ -15,17 +15,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-
-# importamos la application
-from core import views
+from django.urls import path, include # importamos include para poder enviar las urls desde la app
 
 
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('consultas/', views.consultas, name='consultas'),
-    path('registrar/', views.registrar, name='registrar'),
+    path('', include('core.urls')), # indica que se tomen las urls de la app core
     path('admin/', admin.site.urls),
-    
+    path('accounts/', include('django.contrib.auth.urls')), # implementacion sistema de login
+
 ]

@@ -1,0 +1,15 @@
+<!-- inserta el contenido de base.html en esta pagina -->
+{% extends 'core/base.html' %}
+
+{% block title %} Administracion {% endblock %}
+
+{% block content %}
+{% load static %}
+
+<hr>
+<div class="container text-center">
+<h3><strong>Bienvenido/a {{ user.username | upper }}</strong></h3>
+</div>
+<hr>
+
+{% endblock %}
