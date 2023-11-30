@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, redirect
 from .models import Alumno, Tutor, Curso, Docente, Direccion
 from .exceptions import AlumnoExistException
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -128,10 +128,10 @@ def registrar(request):
                 tutor.save()
 
                 alumno = Alumno.objects.create(dni_alumno=dni_alumno, apellido_alumno=apellido_alumno,
-                                            nombre_alumno=nombre_alumno, curso_alumno=nombre_curso, tutor=tutor)
+                                               nombre_alumno=nombre_alumno, curso_alumno=nombre_curso, tutor=tutor)
 
                 direccion = Direccion.objects.create(barrio=barrio, vivienda=vivienda, calle=calle,
-                                                    piso=piso, depto=depto, sector=sector, dni_tutor=tutor)
+                                                     piso=piso, depto=depto, sector=sector, dni_tutor=tutor)
 
                 alumno.save()
                 direccion.save()
@@ -150,3 +150,72 @@ def registrar(request):
             'docentes': docentes,
         }
         return render(request, 'core/registrar.html', datos)
+
+def cursos(request):
+    # Se obtienen los cursos
+    cursos = Curso.objects.all()
+
+    # Si hay una peticion la comprueba
+    if request.method == "POST":
+        add_curso = request.POST['nombre_curso']
+        if Curso.objects.filter(nombre_curso=add_curso).exists():
+            print("Ya existe")
+        else:
+            Curso.objects.create(nombre_curso=add_curso)
+
+    datos = {
+        'cursos': cursos,
+    }
+    # datos: carga los cursos al cargar la pagina
+    return render(request, 'core/cursos.html', datos)
+
+# FUNCION QUE ELIMINA LOS CURSOS
+
+
+def eliminar_curso(request, curso_id):
+
+    # Obtiene el id del curso que se desea eliminar
+    curso = Curso.objects.get(id=curso_id)
+    # Elimina el curso
+    curso.delete()
+    return redirect('cursos')  # Redirecciona a la pagina cursos
+
+
+def docentes(request):
+   
+    docentes = Docente.objects.all()
+
+    # Si hay una peticion la comprueba
+    if request.method == "POST":
+        dni_docente = request.POST['dni_docente']
+        apellido_docente = request.POST['apellido_docente']
+        nombre_docente = request.POST['nombre_docente']
+        telefono_docente = request.POST['telefono_docente']
+
+        if Docente.objects.filter(dni_docente=dni_docente).exists():
+            return render(request, 'core/docentes.html', {'dni_duplicado': True, 'docentes':docentes})
+        else:
+            Docente.objects.create(dni_docente=dni_docente, apellido_docente=apellido_docente,
+                                   nombre_docente=nombre_docente, telefono_docente=telefono_docente)
+
+    datos = {
+        'docentes': docentes,
+    }
+    # datos: carga los cursos al cargar la pagina
+    return render(request, 'core/docentes.html', datos)
+
+
+# FUNCION PARA ELIMINAR DOCENTES
+def eliminar_docente(request, docente_id):
+
+    docente = Docente.objects.get(id=docente_id)
+    docente.delete()
+    return redirect('docentes')  # Redirecciona a la pagina cursos
+
+def usuarios(request):
+
+    return render(request, 'core/usuarios.html')
+
+def asignacion_cursos(request):
+
+    return render(request, 'core/asignacion_cursos.html')

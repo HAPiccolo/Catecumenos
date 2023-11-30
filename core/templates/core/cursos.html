@@ -1,0 +1,97 @@
+<!-- inserta el contenido de base.html en esta pagina -->
+{% extends 'core/base.html' %}
+
+{% block title %} Administracion {% endblock %}
+
+{% block content %}
+{% load static %}
+
+<hr class="border border-color-light">
+<div class="container text-center">
+    <h3 class="text-light"><strong>ADMINISTRACION DE CURSOS</strong></h3>
+</div>
+<hr class="border border-color-light">
+
+<div class="container-sm">
+
+    <style>
+        /* Agrega estilos CSS para personalizar la apariencia */
+        .table-container {
+            max-width: 70%;
+            /* Ajusta el ancho máximo de la tabla según tus preferencias */
+            margin: auto;
+            /* Centra la tabla en el contenedor */
+        }
+
+        .acciones-columna {
+            text-align: right;
+            /* Alinea el contenido a la derecha en la columna de acciones */
+        }
+    </style>
+    <div class="container m-4">
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="container">
+                    <p class="text-light "><strong>AGREGAR CURSO</strong></p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <span class="input-group-text border border-dark bg-secondary"
+                                id="inputGroup-sizing-default">Nombre del curso</span>
+                            <input type="text" name="nombre_curso" class="form-control border border-dark ", required>
+                        </div><br>
+                        <button class="btn btn-success w-100 border border-dark  p-2  type=" submit"
+                            value="Guardar">Guardar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+
+                <div class="table-container ">
+                    <table class="table table-hover table-dark ">
+
+                        <style>
+                            .table-container {
+                                max-height: 400px;
+                                /* Ajusta la altura máxima según tus necesidades */
+                                overflow-y: auto;
+                                /* Agrega un scroll vertical si el contenido es más grande que la altura */
+                            }
+                        </style>
+
+                        <div class="table-container">
+                            <table class="table table-hover table-dark">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Curso</th>
+                                        <th scope="col" class="acciones-columna">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for cursos in cursos %}
+                                    <tr>
+                                        <th>{{ cursos.id }}</th>
+                                        <td>{{ cursos.nombre_curso }}</td>
+                                        <td class="acciones-columna">
+                                            <button class="btn btn-warning"><img src="{% static 'img/editar.png' %}"
+                                                    alt="editar" style="width: 24px;"></button>
+                                            <a href="{% url 'eliminar_curso' cursos.id %}" class="btn btn-danger"
+                                                onclick="return confirm('¿Estás seguro de que deseas eliminar este curso?')">
+                                                <img src="{% static 'img/borrar.png' %}" alt="borrar"
+                                                    style="width: 24px;">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        {% endblock %}

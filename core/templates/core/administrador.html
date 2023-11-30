@@ -6,10 +6,72 @@
 {% block content %}
 {% load static %}
 
-<hr>
+<hr class="border border-color-light">
 <div class="container text-center">
-<h3><strong>Bienvenido/a {{ user.username | upper }}</strong></h3>
+    <h3 class="text-light"><strong>Bienvenido/a: {{ user.username | upper }}</strong></h3>
 </div>
-<hr>
+<hr class="border border-color-light">
+
+<div class="container justify-content-center">
+    <div class="row justify-content-center">
+        <div class="col-md-3">
+            <a href="{% url 'docentes' %}">
+                <div class="card m-4 bg-dark text-light" style="width: 12rem;">
+                    <img src="{% static 'img/add_teacher.jpg' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text text-center fw-bold">DOCENTES</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a href="{% url 'cursos' %}">
+                <div class="card m-4 bg-dark text-light" style="width: 12rem;">
+                    <img src="{% static 'img/add_course.jpg' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text text-center fw-bold">CURSOS</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a href="{% url 'home' %}">
+                <div class="card m-4 bg-dark text-light" style="width: 12rem;">
+                    <img src="{% static 'img/cert.jpg' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text text-center fw-bold">CERTIFICADOS</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a href="{% url 'usuarios' %}">
+                <div class="card m-4 bg-dark text-light" style="width: 12rem;">
+                    <img src="{% static 'img/add_user.jpg' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text text-center fw-bold">USUARIOS</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a href="{% url 'asignacion_cursos' %}">
+                <div class="card m-4 bg-dark text-light" style="width: 12rem;">
+                    <img src="{% static 'img/assing_course.jpg' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text text-center fw-bold">ASIGNACION CURSO</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+    </div>
+</div>
+
 
 {% endblock %}
