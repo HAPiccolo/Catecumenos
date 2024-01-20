@@ -6,12 +6,11 @@
 {% block content %}
 
 <body class="color-dark">
-  <div class="container-fluid bg-dark border border-dark text-light p-3 text-center">
-    <br>
-    <h4><strong>BUSQUEDA DE ALUMNO</strong></h4>
-    <p></p>
+  <hr class="border border-color-light">
+  <div class="container text-center">
+  <h3 class="text-light"><strong>BUSQUEDA DE ALUMNO</strong></h3>
   </div>
-
+  <hr class="border border-color-light">
   <div class="container mx-auto text-light my-4 py-2 rounded text-light border-light border border-2 shadow-lg bg-dark" style="max-width: 700px; ">
     <form method="post" id="busqueda" action="{% url 'consultas' %}">
       {% csrf_token %}
@@ -70,7 +69,7 @@
       {% if apellidoAlumno.docente_alumno == None %}
       <li class="list-group-item"><strong>Docente Asignado:</strong> Sin asignar</li>
       {% else %}
-      <li class="list-group-item"><strong>Docente Asignado:</strong> {{ alumno.docente_alumno }}</li>
+      <li class="list-group-item"><strong>Docente Asignado:</strong> {{ apellidoAlumno.docente_alumno }}</li>
 
       {% endif %}
     </ul>
@@ -83,7 +82,7 @@
 
   {% if alumno %}
   <div class="container mx-auto" style="max-width: 600px;">
-    <ul class="list-group mb-2 p-1 style='max-width: 600px' bg-light">
+       <ul class="list-group mb-2 p-1 style='max-width: 600px' bg-light">
       <li class="list-group-item bg-dark text-light">
         <h4> {{ alumno.apellido_alumno }} {{ alumno.nombre_alumno }} </h4>
       </li>
@@ -98,6 +97,7 @@
 
       {% endif %}
     </ul>
+ 
   </div>
   {% endif %}
 

@@ -1,0 +1,123 @@
+<!-- inserta el contenido de base.html en esta pagina -->
+{% extends 'core/base.html' %}
+
+{% block title %} Administracion {% endblock %}
+
+{% block content %}
+{% load static %}
+
+<hr class="border border-color-light">
+<div class="container text-center">
+<h3 class="text-light"><strong>GESTION DE DOCENTES</strong></h3>
+</div>
+<hr class="border border-color-light">
+
+<div class="container-sm">
+
+    <style>
+        /* Agrega estilos CSS para personalizar la apariencia */
+        .table-container {
+            max-width: 70%;
+            /* Ajusta el ancho máximo de la tabla según tus preferencias */
+            margin: auto;
+            /* Centra la tabla en el contenedor */
+        }
+
+        .acciones-columna {
+            text-align: right;
+            /* Alinea el contenido a la derecha en la columna de acciones */
+        }
+    </style>
+    <div class="container m-4">
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="container">
+                    <p class="text-light "><strong>AGREGAR DOCENTE</strong></p>
+                    {% if dni_duplicado %}
+                    <div class="alert alert-danger text-center" role="alert">
+                      <h3>El DNI ingresado ya existe </h3>
+                    </div>
+                    {% endif%}
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <span class="input-group-text border border-dark bg-secondary"
+                                id="inputGroup-sizing-default">Dni:</span>
+                            <input type="text" name="dni_docente" class="form-control border border-dark " oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 8);" , required placeholder="Ej: 123456789">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text border border-dark bg-secondary"
+                                id="inputGroup-sizing-default">Apellido:</span>
+                            <input type="text" name="apellido_docente" class="form-control border border-dark ", required placeholder="Ej: Dominguez">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text border border-dark bg-secondary"
+                                id="inputGroup-sizing-default">Nombre:</span>
+                            <input type="text" name="nombre_docente" class="form-control border border-dark ", required placeholder="Ej: Hector Daniel">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text border border-dark bg-secondary"
+                                id="inputGroup-sizing-default">Telefono:</span>
+                            <input type="text" name="telefono_docente" class="form-control border border-dark " oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 10);", required placeholder="Ej: 3794123456">
+                        </div>
+                        <br>
+                        <button class="btn btn-success w-100 border border-dark  p-2  type=" submit"
+                            value="Guardar">Guardar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+
+                <div class="table-container ">
+                    <table class="table table-hover table-dark ">
+
+                        <style>
+                            .table-container {
+                                max-height: 400px;
+                                /* Ajusta la altura máxima según tus necesidades */
+                                overflow-y: auto;
+                                /* Agrega un scroll vertical si el contenido es más grande que la altura */
+                            }
+                        </style>
+
+                        <div class="table-container">
+                            <table class="table table-hover table-dark">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">APELLIDO</th>
+                                        <th scope="col">NOMBRE</th>
+                                        <th scope="col" class="acciones-columna">ACCION</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for docente in docentes %}
+                                    <tr>
+                                        <th>{{ docente.id }}</th>
+                                        <td>{{ docente.apellido_docente }}</td>
+                                        <td>{{ docente.nombre_docente }}</td>
+                                        <td class="acciones-columna">
+                                            
+                                            <a href="{% url 'eliminar_docente' docente.id %}" class="btn btn-danger"
+                                                onclick="return confirm('¿Estás seguro de que deseas eliminar a este docente?')">
+                                                <img src="{% static 'img/borrar.png' %}" alt="borrar"
+                                                    style="width: 24px;">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </table>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+{% endblock %}
