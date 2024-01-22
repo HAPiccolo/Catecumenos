@@ -64,18 +64,32 @@
                             <table class="table table-hover table-dark">
                                 <thead>
                                     <tr>
+<<<<<<< HEAD
                                         <!--<th scope="col">#</th> -->
                                         <th scope="col">CURSO</th>
                                         <th scope="col" class="acciones-columna">ACCION</th>
+=======
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Curso</th>
+                                        <th scope="col" class="acciones-columna">Acciones</th>
+>>>>>>> 4dc0b1e7c24ce74f7b007b45ea7f9c432b7fe805
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {% for cursos in cursos %}
                                     <tr>
+<<<<<<< HEAD
                                        <!-- <th>{{ cursos.id }}</th>-->
                                         <td>{{ cursos.nombre_curso }}</td>
                                         <td class="acciones-columna">
                                            
+=======
+                                        <th>{{ cursos.id }}</th>
+                                        <td>{{ cursos.nombre_curso }}</td>
+                                        <td class="acciones-columna">
+                                            <button class="btn btn-warning"><img src="{% static 'img/editar.png' %}"
+                                                    alt="editar" style="width: 24px;"></button>
+>>>>>>> 4dc0b1e7c24ce74f7b007b45ea7f9c432b7fe805
                                             <a href="{% url 'eliminar_curso' cursos.id %}" class="btn btn-danger"
                                                 onclick="return confirm('¿Estás seguro de que deseas eliminar este curso?')">
                                                 <img src="{% static 'img/borrar.png' %}" alt="borrar"

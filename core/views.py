@@ -154,7 +154,10 @@ def registrar(request):
         }
         return render(request, 'core/registrar.html', datos)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4dc0b1e7c24ce74f7b007b45ea7f9c432b7fe805
 def cursos(request):
     # Se obtienen los cursos
     cursos = Curso.objects.all()
@@ -217,6 +220,7 @@ def eliminar_docente(request, docente_id):
     return redirect('docentes')  # Redirecciona a la pagina cursos
 
 def usuarios(request):
+<<<<<<< HEAD
     # PERMITE REGISTRAR UN NUEVO USUARIO    
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -247,3 +251,11 @@ def asignacion_cursos(request):
 
 
 
+=======
+
+    return render(request, 'core/usuarios.html')
+
+def asignacion_cursos(request):
+
+    return render(request, 'core/asignacion_cursos.html')
+>>>>>>> 4dc0b1e7c24ce74f7b007b45ea7f9c432b7fe805
